@@ -2,9 +2,9 @@ services:
   db:
     image: postgres
     environment:
-      POSTGRES_PASSWORD: 123456
-      POSTGRES_USER: zlog
-      POSTGRES_DB: db123
+      POSTGRES_PASSWORD: jerry1121
+      POSTGRES_USER: test
+      POSTGRES_DB: test
   app:
     image: my-node-app
     ports: 
