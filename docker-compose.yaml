@@ -1,0 +1,11 @@
+services:
+  db:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: 123456
+      POSTGRES_USER: zlog
+      POSTGRES_DB: db123
+  app:
+    image: my-node-app
+    ports: 
+      - 13000:3000
