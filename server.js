@@ -3,7 +3,7 @@ import cors from 'cors';
 import { initializeRepositories } from './repository.js';
 import userRoutes from './routes/userRoutes.js';
 
-const PORT = 3000;
+const PORT = 9000;
 
 const app = express();
 app.use(express.json());
