@@ -4,10 +4,12 @@ import userRoutes from './routes/userRoutes.js';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import {v2 as cloudinary} from 'cloudinary';
+import path from 'path';
 
 const PORT = 9000;
 
 dotenv.config();
+
 
 cloudinary.config({
     cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -21,6 +23,7 @@ app.use(cors());
 
 app.use(express.json({limit: "5mb"})); //to parse req.body
 app.use(express.urlencoded({ extended: true })); //to parse form data
+
 
 initializeRepositories().then(() => {
     

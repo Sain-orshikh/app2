@@ -42,7 +42,7 @@ export const createUser = async (req,res) => {
     try {
         const {username, email, password, bio, badges, achievements} = req.body;
         let {picture} = req.body;
-
+        console.log(picture);
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if(!emailRegex.test(email)) return res.status(400).json({message: "Invalid email"});
 
@@ -58,7 +58,7 @@ export const createUser = async (req,res) => {
         const hashedPassword = await bcrypt.hash(password, salt);
 
         if(picture){
-            const uploadedResponse = await cloudinary.uploader.upload(profileImg);
+            const uploadedResponse = await cloudinary.uploader.upload(picture);
 			picture = uploadedResponse.secure_url;
         }
 

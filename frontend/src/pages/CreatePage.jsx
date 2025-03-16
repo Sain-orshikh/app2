@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import { useQueryClient, useQuery, useMutation } from '@tanstack/react-query'
+import { useMutation } from '@tanstack/react-query'
 import toast from 'react-hot-toast'
 
 import { MdCloudUpload } from "react-icons/md";
@@ -8,10 +8,9 @@ import { MdOutlineAdd } from "react-icons/md";
 
 const CreatePage = () => {
 
-  const queryClient = useQueryClient();
-
-  const {mutate: createUser} = useMutation({
+  const { mutate: createUser } = useMutation({
     mutationFn: async (newUser) => {
+      console.log(newUser.picture);
       try {
         const res = await fetch("http://localhost:9000/users/create", {
           method: "POST",
@@ -20,14 +19,17 @@ const CreatePage = () => {
           },
           body: JSON.stringify(newUser),
         });
+  
         const data = await res.json();
-        if(!res.ok) {
+        
+        if (!res.ok) {
           throw new Error(data.message || "Something went wrong!");
         }
-        return data;
+  
+        return data; 
       } catch (error) {
         console.error(error);
-        throw error;
+        throw error; 
       }
     },
     onSuccess: () => {
@@ -36,8 +38,7 @@ const CreatePage = () => {
     onError: (error) => {
       toast.error(error?.message || "Something went wrong!");
     }
-  }
-  )
+  });
 
   const [newUser, setNewUser] = React.useState({
     username: '',
@@ -48,22 +49,8 @@ const CreatePage = () => {
     badges: [],
     achievements: [],
   });
-
-  const handleImgChange = (e, state) => {
-    if (!e.target.files || e.target.files.length === 0) return;
-    const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        setNewUser((prevUser) => ({
-          ...prevUser,
-          [state]: reader.result,
-        }));
-      };
-      reader.readAsDataURL(file);
-    }
-  };
-
+  
+    console.log(newUser.picture);
     const [options, setOptions] = useState(["1", "2", "3"]);
     const [selectedOption, setSelectedOption] = useState("");
   
@@ -171,14 +158,27 @@ const CreatePage = () => {
               </button>
             </div>
           </div>
-          {newUser.picture && (
+          {/*newUser.picture && (
           <img
             src={newUser.picture}
             alt="profile"
             className="w-[10rem] h-[10rem] rounded-full mt-3"
           />
           )  
-          }
+          */}
+          <button className={`flex flex-col w-full h-[10rem] border rounded-md mt-3 bg-white hover:bg-gray-200 items-center justify-center cursor-pointer`}>
+            <span>
+              <MdCloudUpload className="text-8xl text-center" />
+            </span>
+            <input
+                type='picture'
+                value={newUser.picture}
+                onChange={(e) => setNewUser({ ...newUser, picture: e.target.value })}
+                placeholder='Picture'
+                className='w-[50%] p-2 mb-3 border rounded-md'              
+              />
+          </button>
+          {/*}
           <label
             htmlFor="fileInput"
             className={`${
@@ -189,14 +189,14 @@ const CreatePage = () => {
               <MdCloudUpload className="text-8xl text-center" />
             </span>
 
-            <input
+            {<input
               id="fileInput"
               type="file"
               accept="image/*"
               onChange={(e) => handleImgChange(e, "picture")}
               className="hidden"
             />
-          </label>
+          </label>*/}
           <button
             onClick={() => handleCreateUser()}
             className='w-full sm:w-[50%] text-xl font-semibold hover:bg-gray-200 bg-white border rounded-md p-2 mt-3 mb-3'
