@@ -12,14 +12,28 @@ export const User = new EntitySchema({
         username: {
             type: "varchar"
         },
-        profileImg: {
+        email: {
+            type: "varchar"
+        },
+        password: {
+            type: "varchar"
+        },
+        picture: {
             type: "varchar",
             nullable: true
         },
         bio: {
             type: "text",
             nullable: true
-        }
+        },
+        badges: {
+            type: "simple-array",
+            nullable: true
+        },
+        achievements: {
+            type: "simple-array",
+            nullable: true
+        },
     }
 });
 

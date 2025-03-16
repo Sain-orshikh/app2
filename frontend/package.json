@@ -16,13 +16,14 @@
     "vite": "^6.2.0"
   },
   "dependencies": {
-    "@apollo/client": "^3.13.4",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
     "@mui/material": "^6.4.7",
     "@tailwindcss/vite": "^4.0.14",
-    "graphql": "^16.10.0",
+    "@tanstack/react-query": "^5.68.0",
     "jotai": "^2.12.2",
+    "react-hot-toast": "^2.5.2",
+    "react-icons": "^5.5.0",
     "react-router-dom": "^7.3.0"
   }
 }
