@@ -98,6 +98,9 @@ export const updateUser = async (req,res) => {
 };
 
 export const deleteUser = async (req,res) => {
+
+    const UserRepository = getUserRepository();
+
     try {
         const userId = req.params.id;
         

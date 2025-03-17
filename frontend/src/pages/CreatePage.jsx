@@ -166,7 +166,7 @@ const CreatePage = () => {
           />
           )  
           */}
-          <button className={`flex flex-col w-full h-[10rem] border rounded-md mt-3 bg-white hover:bg-gray-200 items-center justify-center cursor-pointer`}>
+          <button className={`flex flex-col w-full h-[10rem] border rounded-md mt-3 bg-white items-center justify-center cursor-pointer`}>
             <span>
               <MdCloudUpload className="text-8xl text-center" />
             </span>
