@@ -1,6 +1,15 @@
 import { atomWithStorage } from "jotai/utils";
 import { atom } from "jotai";
 
+export const Language = atomWithStorage("language", "EN");
+
+export const setLanguage = atom(
+  null, 
+  (get, set, value) => {
+    set(Language, value);
+  }
+);
+
 export const newUser = atomWithStorage("newUser", {
   username: 'lol',
   email: '',
